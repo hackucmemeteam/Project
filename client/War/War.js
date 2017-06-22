@@ -1,0 +1,3 @@
+Template.war.rendered = function(){
+
+}
