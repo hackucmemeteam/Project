@@ -4,6 +4,9 @@ Template.profile.rendered= function() {
 	if (Profile.find({userId:Meteor.userId()}).fetch().length==0 && Meteor.userId()!= undefined){
 		Profile.insert({username:Meteor.users.find({_id:Meteor.userId()}).fetch()[0].emails[0].address.split("@")[0],userId:Meteor.userId()})
 	}
+	$('html, body').css({
+    "background-image": "url('http://i.imgur.com/yz868m1.png')",
+  })
 }
 Template.profile.events({
 	//allows the user to edit username
@@ -37,3 +40,9 @@ Template.profile.helpers({
 	},
 	//creates the friend code
 })
+
+Template.profile.destroyed = function() {
+  $('html, body').css({
+    "background-image": "none"
+  })
+};
