@@ -17,6 +17,7 @@ Template.blackjack.rendered = function(){
 	var cards= Cards.find().fetch();
 	var dealcards = [cards[Math.floor(Math.random()*52)],cards[Math.floor(Math.random()*52)]]
 	Games.update(currentgame._id,{$set:{dealcards:dealcards,user1cards:[cards[Math.floor(Math.random()*52)],cards[Math.floor(Math.random()*52)]],user2cards:[cards[Math.floor(Math.random()*52)],cards[Math.floor(Math.random()*52)]]}})
+	Session.set("originalhand",true);
 
 }
 Template.blackjack.helpers({
@@ -44,4 +45,10 @@ Template.blackjack.helpers({
 	user2card:function(){
 		return Games.find(Session.get("currentgame")._id).fetch()[0].user2cards
 	},
+	originalhand:function(){
+		return Session.get("originalhand");
+	},
+	firstdealercard:function(){
+		return Games.find(Session.get("currentgame")._id).fetch()[0].dealcards[0].imagename
+	}
 })

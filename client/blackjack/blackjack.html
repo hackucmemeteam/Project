@@ -14,9 +14,14 @@
 
 		</div>
 		<div class="col-xs-3"><h4>Dealer</h4>
+			{{#if originalhand}}
+			<img style="height:200px" src="/cards/{{firstdealercard}}.png">
+			<img style="height:200px" src="/back_card.png">
+			{{else}}
 			{{#each dealercard}}
 				<img style="height:200px" src="/cards/{{imagename}}.png">
 			{{/each}}
+			{{/if}}
 			</div>
 		<center><div class="col-xs-3"><br><br><br><br><br><br><button id="hit" class="btn btn-success">Hit</button><br><br><br><br><button id="stick" class="btn btn-success">Stick</button></div></center>
 	{{/if}}
