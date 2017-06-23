@@ -36,12 +36,12 @@ Template.blackjack.helpers({
 		return Profile.find({userId:Session.get("currentgame").user2}).fetch()[0].username
 	},
 	dealercard:function(){
-		return Game.find(Session.get("currentgame")._id).fetch()[0].dealercard
+		return Games.find(Session.get("currentgame")._id).fetch()[0].dealcards
 	},
 	user1card:function(){
-		return Game.find(Session.get("currentgame")._id).fetch()[0].user1card
+		return Games.find(Session.get("currentgame")._id).fetch()[0].user1cards
 	},
 	user2card:function(){
-		return Game.find(Session.get("currentgame")._id).fetch()[0].user2card
+		return Games.find(Session.get("currentgame")._id).fetch()[0].user2cards
 	},
 })
