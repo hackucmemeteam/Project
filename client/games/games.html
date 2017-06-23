@@ -1,4 +1,5 @@
 <template name="games">
+	{{#if currentUser}}
 	<div class="col-xs-6" style="color: white">
 		<center><h2>Create New Game</h2></center>
 		<center><h4>Game Type</h4></center>
@@ -25,4 +26,7 @@
 	<center><input  class="text-center" placeholder="Game Code" style="width:80%; background-color:white" id="joincode"></center>
 	</div>
 	<center><div class="text-center" id="join" ><button type = "button" class="btn">Join Game</button></div></center>
+	{{else}}
+	<center><h2 style="color:white">You Must Login or Register</h2></center>
+	{{/if}}
 </template>

@@ -1,0 +1,36 @@
+<template name="profile">
+{{#if currentUser}}
+	<!-- creates the table-->
+<table class="table table-striped">
+
+	<tbody>
+	<!--Email locked term -->
+	
+	
+	<!-- edittable username-->
+	<tr>
+	<td> <h3>Username</h3></td>
+	<!-- checks from js if username is edittable-->
+	{{#if caneditusername}}
+	<!-- if it is edittable -->
+	<!-- creates the edittable with the starting value of the old username-->
+	<td><center><input class="form-control text-center largeinput" value="{{username}}" id="newusername"></center></td>
+	<!-- button submits the new username to the server-->
+	<td><button style="height:100%" class="btn-raised btn btn-block btn-warning" id="doneusername"><h3>done</h3></button></td><td></td>
+	{{else}}
+	<!-- if it is not edittable-->
+	<!-- shows the username-->
+	<td><center><h3>{{username}}</h3></center></td>
+	<!-- changes to edit mode -->
+	<td><button style="height:100%" class="btn-raised btn btn-block" id="editusername"><h3>edit</h3></button></td><td></td>
+	{{/if}}
+	</tr>
+	<!-- edittable first name -->
+	
+	</tbody>
+</table>
+{{else}}
+<center><h2 style="color:white">You must log in or register</h2></center>
+{{/if}}	
+
+</template>
