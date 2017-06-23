@@ -14,6 +14,10 @@ Template.blackjack.rendered = function(){
 		currentgame = (Games.findOne({user4:Meteor.userId()}))
 	}
 	Session.set("currentgame",currentgame)
+	var cards= Cards.find().fetch();
+	var dealcards = [cards[Math.floor(Math.random()*52)],cards[Math.floor(Math.random()*52)]]
+	Games.update(currentgame._id,{$set:{dealcards:dealcards,user1cards:[cards[Math.floor(Math.random()*52)],cards[Math.floor(Math.random()*52)]],user2cards:[cards[Math.floor(Math.random()*52)],cards[Math.floor(Math.random()*52)]]}})
+
 }
 Template.blackjack.helpers({
 	twoplayer:function(){
@@ -30,5 +34,14 @@ Template.blackjack.helpers({
 	},
 	player2:function(){
 		return Profile.find({userId:Session.get("currentgame").user2}).fetch()[0].username
-	}
+	},
+	dealercard:function(){
+		return Game.find(Session.get("currentgame")._id).fetch()[0].dealercard
+	},
+	user1card:function(){
+		return Game.find(Session.get("currentgame")._id).fetch()[0].user1card
+	},
+	user2card:function(){
+		return Game.find(Session.get("currentgame")._id).fetch()[0].user2card
+	},
 })
