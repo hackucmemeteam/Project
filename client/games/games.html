@@ -1,3 +1,23 @@
 <template name="games">
-	GAME TEMPLATE
+	<div class="col-xs-6">
+		<center><h2>Create New Game</h2></center>
+		<center><h4>Game Type</h4></center>
+		<center><select id="type" style="width:50%; font-size:20px" class="form-control">
+		<option><h2>War</h2></option>
+		</select></center>
+		<br>
+		<center><h4>Amount of Players</h4></center>
+		<center><select id="players" style="width:50%; font-size:20px" class="form-control">
+		<option><h2>2</h2></option>
+		<option><h2>3</h2></option>
+		<option><h2>4</h2></option>
+		</select></center>
+		<br>
+		<center><div class="text-center" id="create" ><button type = "button" class="btn">Create Game</button></div></center>
+	</div>
+	<div class="col-xs-6">
+	<center><h2>Join Game</h2></center>
+	<center><input class="text-center" placeholder="Game Code" style="width:80%" id="joincode"></center>
+	</div>
+	<center><div class="text-center" id="join" ><button type = "button" class="btn">Join Game</button></div></center>
 </template>
