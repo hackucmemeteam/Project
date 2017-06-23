@@ -23,8 +23,7 @@ iron:router
 twbs:bootstrap
 
 materialize:materialize
-accounts-google
 accounts-base
 accounts-ui
-google-config-ui
+accounts-password
 
