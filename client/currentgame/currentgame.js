@@ -64,7 +64,7 @@ Template.currentgame.helpers({
 
 Template.currentgame.rendered = function() {
   $('html, body').css({
-    "background-image": "url('http://i.imgur.com/G4CgYnu.png')",
+    "background-image": "url('https://i.ytimg.com/vi/M2uBtg_PzKg/maxresdefault.jpg')",
   })
 };
 
