@@ -16,7 +16,7 @@ Template.war.rendered = function(){
 	Session.set("currentgame",currentgame)
 	if(Games.findOne({user1:Meteor.userId()}).deck1==undefined){
 	if(Games.findOne({user1:Meteor.userId()})!= undefined){
-		console.log(Games.findOne({user1:Meteor.userId()}));
+		
 		var deck = Cards.find().fetch();
 		Meteor.call("shuffle",deck,Games.findOne({user1:Meteor.userId()._id}),-1);
 		deck = Temp.findOne({gameId:Games.findOne({user1:Meteor.userId()._id})}).value
@@ -242,12 +242,12 @@ Template.war.events({
 		if(currentgame.size<3){
 			Games.update(currentgame._id,{$set:{player3:true}})
 		}
-		console.log(currentgame);
+		
 		currentgame = Games.find(currentgame._id).fetch()[0]
-		console.log(currentgame);
+		
 		
 		if (currentgame.player1 && currentgame.player2 && currentgame.player3 && currentgame.player4){
-			console.log("IT GOT HRE");
+		
 			if (!(currentgame.deck1.length == 0|| currentgame.deck2.length == 0)){
 			Games.update(currentgame._id,{$set:{player1:false}})
 			Games.update(currentgame._id,{$set:{player2:false}})
@@ -260,9 +260,9 @@ Template.war.events({
 					var value1 = currentgame.deck1[currentgame.deck1.length-1].value;
 					var value2 = currentgame.deck2[currentgame.deck2.length-1].value;
 					
-					console.log(currentgame.deck2[currentgame.deck2.length-1].suit);
-					if (value1 > value2 || (value1==value2 && currentgame.deck1[currentgame.deck1.length-1].suit > currentgame.deck2[currentgame.deck2.length-1].suit)){
-						console.log("HERREE")
+					if (value1 > value2 ){
+					
+						$("textarea").val(""+Profile.find({userId:currentgame.user1}).fetch()[0].username+" won the round!");
 						var discard1 = [];
 						discard1 =Games.find(currentgame._id).fetch()[0].discard1;
 						discard1[discard1.length] = currentgame.deck1[currentgame.deck1.length-1]
@@ -280,19 +280,22 @@ Template.war.events({
 						Games.update(currentgame._id,{$set:{deck2:deck2}})
 					}
 
-					}
+					
 					else{
-						var discard2 =Games.find(currentgame._id).fetch()[0].discard2;
+				
+						$("textarea").val(""+Profile.find({userId:currentgame.user2}).fetch()[0].username+" won the round!");
+						var discard2;
+						discard2 =Games.find(currentgame._id).fetch()[0].discard2;
 						discard2[discard2.length] = currentgame.deck1[currentgame.deck1.length-1]
 						discard2[discard2.length] = currentgame.deck2[currentgame.deck2.length-1]
 						Games.update(currentgame._id,{$set:{discard2:discard2}})
-						var deck1 = []
+						var deck1 = [];
 						var deck2 = [];
-						for (var k = 0; k < currentgame.deck1.length-1;k++){
-							deck1[k] = currentgame.deck1[k]
+						for (var l = 0; l < currentgame.deck1.length-1;l++){
+							deck1[l] = currentgame.deck1[l]
 						}
-						for (var j = 0; j < currentgame.deck2.length-1;j++){
-							deck2[j] = currentgame.deck2[j]
+						for (var m = 0; m < currentgame.deck2.length-1;m++){
+							deck2[m] = currentgame.deck2[m]
 						}
 						Games.update(currentgame._id,{$set:{deck1:deck1}})
 						Games.update(currentgame._id,{$set:{deck2:deck2}})
@@ -300,7 +303,7 @@ Template.war.events({
 					if (Games.find(currentgame._id).fetch()[0].deck1.length==0){
 						Meteor.call("shuffle",Games.find(currentgame._id).fetch()[0].discard1, Games.find(currentgame._id).fetch()[0]._id,1)
 						var newdeck1 = Temp.find({gameId:currentgame._id}).fetch()[0].value
-						console.log(newdeck1);
+						
 						if (Temp.find({gameId:currentgame._id}).fetch()[0].num==2){
 						Games.update(currentgame._id,{$set:{deck1:newdeck1}})
 						Games.update(currentgame._id,{$set:{discard1:[]}})	
@@ -309,7 +312,7 @@ Template.war.events({
 					if (Games.find(currentgame._id).fetch()[0].deck2.length==0){
 						Meteor.call("shuffle",Games.find(currentgame._id).fetch()[0].discard2,Games.find(currentgame._id).fetch()[0]._id,2)
 						var newdeck2 = Temp.find({gameId:currentgame._id}).fetch()[0].value
-						console.log(newdeck2);
+						
 						if (Temp.find({gameId:currentgame._id}).fetch()[0].num==2){
 						Games.update(currentgame._id,{$set:{deck2:newdeck2}})
 						Games.update(currentgame._id,{$set:{discard2:[]}})
@@ -319,11 +322,11 @@ Template.war.events({
 				
 			}
 			if (Games.find(currentgame._id).fetch()[0].deck1.length==0){
-						console.log("HERE!!!");
+					
 
 						Meteor.call("shuffle",Games.find(currentgame._id).fetch()[0].discard1, Games.find(currentgame._id).fetch()[0]._id,1)
 						var newdeck1 = Temp.find({gameId:currentgame._id}).fetch()[0].value
-						console.log(newdeck1);
+					
 						if (Temp.find({gameId:currentgame._id}).fetch()[0].num==1){
 						Games.update(currentgame._id,{$set:{deck1:newdeck1}})
 						Games.update(currentgame._id,{$set:{discard1:[]}})	
@@ -333,12 +336,23 @@ Template.war.events({
 						Meteor.call("shuffle",Games.find(currentgame._id).fetch()[0].discard2, Games.find(currentgame._id).fetch()[0]._id,2)
 
 						var newdeck2 = Temp.find({gameId:currentgame._id}).fetch()[0].value
-						console.log(newdeck2);
+					
 						if (Temp.find({gameId:currentgame._id}).fetch()[0].num==2){
 							Games.update(currentgame._id,{$set:{deck2:newdeck2}})
 							Games.update(currentgame._id,{$set:{discard2:[]}})	
 						}
 					}
+				}
+				if (Games.find(currentgame._id).fetch()[0].deck1.length==0 && Games.find(currentgame._id).fetch()[0].discard1.length == 0){
+					alert(Profile.find({userId:currentgame.user2}).fetch()[0].username+"won the game!")
+					Game.remove(currentgame._id);
+					Router.go('/games')
+				}
+				if (Games.find(currentgame._id).fetch()[0].deck2.length==0 && Games.find(currentgame._id).fetch()[0].discard2.length == 0){
+					alert(Profile.find({userId:currentgame.user1}).fetch()[0].username+"won the game!")
+					Game.remove(currentgame._id);
+					Router.go('/games')
+				}
 		}
 		
 

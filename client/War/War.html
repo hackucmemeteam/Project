@@ -1,11 +1,12 @@
 <template name="war">
 {{#if twoplayer}}
+<div><h5><textarea class="text-center" style="background-color:white" readonly>Press Ready to Play</textarea></h5></div>
 <div class="col-xs-5">
-	<h3>{{player1}}</h3>
+	<h4>{{player1}}</h4>
 	<img style="height:300px" src="/cards/{{deck1card}}.png">
 </div>
 <div class="col-xs-5">
-	<h3>{{player2}}</h3>
+	<h4>{{player2}}</h4>
 	<img style="height:300px" src="/cards/{{deck2card}}.png">
 
 </div>
