@@ -1,0 +1,17 @@
+<template name="blackjack">
+	{{#if twoplayer}}
+		<div class="col-xs-3">
+			<h4>{{player1}}</h4>
+			<img style="height:300px" src="/cards/{{deck1card}}.png">
+		</div>
+		<div class="col-xs-3">
+			<h4>{{player2}}</h4>
+			<img style="height:300px" src="/cards/{{deck2card}}.png">
+
+		</div>
+		<div class="col-xs-3"><h4>Dealer</h4>
+			<img style="height:300px" src="/cards/{{deck2card}}.png"></div>
+		<div class="col-xs-3"><br><br><br><br><br><br><br><br><br><br><button id="ready" class="btn btn-success">Ready</button></div>
+	{{/if}}
+
+</template>

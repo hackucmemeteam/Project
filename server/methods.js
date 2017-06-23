@@ -1,5 +1,5 @@
 Meteor.methods({
-	shuffle:function(deck,gameId){
+	shuffle:function(deck,gameId,num){
 
 		var shuffledeck = deck;
 		var i = 0;
@@ -13,7 +13,7 @@ Meteor.methods({
     		shuffledeck[j] = temp;
   		}
   		Temp.remove({gameId:gameId})
-  		Temp.insert({gameId:gameId,value:shuffledeck});
+  		Temp.insert({gameId:gameId,value:shuffledeck,num:num});
 	},
 
 
