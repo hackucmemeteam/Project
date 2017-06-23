@@ -61,3 +61,16 @@ Template.currentgame.helpers({
 		return currentgame.gamecode
 	}
 })
+
+Template.currentgame.rendered = function() {
+  $('html, body').css({
+    "background-image": "url('http://i.imgur.com/G4CgYnu.png')",
+  })
+};
+
+Template.currentgame.destroyed = function() {
+  $('html, body').css({
+    "background-image": "none"
+  })
+};
+
