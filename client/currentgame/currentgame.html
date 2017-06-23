@@ -1,6 +1,11 @@
 <template name="currentgame">
-{{#if wargame}}
-<br>
-{{> war}}
+{{#if gamefull}}
+	{{#if wargame}}
+	<br>
+	{{> war}}
+	{{/if}}
+{{else}}
+<center><h2>Waiting for Others to Join. <br> Game code is {{gamecode}}</h2></center>
 {{/if}}
+
 </template>
