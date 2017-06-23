@@ -26,5 +26,8 @@ materialize:materialize
 accounts-base
 ian:accounts-ui-bootstrap-3
 accounts-password
+session
+u2622:persistent-session
+
 
 

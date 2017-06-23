@@ -16,7 +16,7 @@ Template.games.events({
 			currentgame = (Games.find({user4:Meteor.userId()}).fetch())
 		}
 		for (var i = 0; i < currentgame.length; i++){
-			Games.remove({_id:currentgame._id});
+			Games.remove({_id:currentgame[i]._id});
 		}
 		var id = Games.insert({type:$("#type").val(),size:$("#players").val(),user1:Meteor.userId()})
 		var gamecode = id.split("");
