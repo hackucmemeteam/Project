@@ -1,5 +1,8 @@
 Template.games.events({
 	'click #create':function(){
+		if (Profile.find({userId:Meteor.userId()}).fetch().length==0 && Meteor.userId()!= undefined){
+			Profile.insert({username:Meteor.users.find({_id:Meteor.userId()}).fetch()[0].emails[0].address.split("@")[0],userId:Meteor.userId()})
+		}
 		var currentgame;
 		if (Games.findOne({user1:Meteor.userId()})!=undefined){
 			//console.log(Games.findOne({user1:Meteor.userId()}).type=="War")
@@ -18,7 +21,7 @@ Template.games.events({
 		for (var i = 0; i < currentgame.length; i++){
 			Games.remove({_id:currentgame[i]._id});
 		}
-		var id = Games.insert({type:$("#type").val(),size:$("#players").val(),user1:Meteor.userId()})
+		var id = Games.insert({type:$("#type").val(),size:$("#players").val(),user1:Meteor.userId(),discard1:[],discard2:[]})
 		var gamecode = id.split("");
 		gamecode[6] = "/";
 		gamecode = gamecode.join("").split("/")[0]
@@ -27,6 +30,12 @@ Template.games.events({
 		Router.go("/games/"+id);
 	},
 	'click #join':function(){
+	
+  		if (Profile.find({userId:Meteor.userId()}).fetch().length==0 && Meteor.userId()!= undefined){
+			Profile.insert({username:Meteor.users.find({_id:Meteor.userId()}).fetch()[0].emails[0].address.split("@")[0],userId:Meteor.userId()})
+		}
+  	
+  
 		var game = Games.findOne({gamecode:$(joincode).val()})
 		if (game==undefined){
 			alert("Invalid Code")
@@ -64,10 +73,12 @@ Template.games.rendered = function() {
   $('html, body').css({
     "background-image": "url('http://i.imgur.com/1ya6DPX.png')",
   })
+
 };
 
 Template.games.destroyed = function() {
   $('html, body').css({
     "background-image": "none"
   })
+
 };

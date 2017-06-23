@@ -3,3 +3,4 @@
 Meteor.subscribe("Cards");
 Meteor.subscribe("Games");
 Meteor.subscribe("Temp");
+Meteor.subscribe("Profile");
