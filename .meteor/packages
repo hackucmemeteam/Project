@@ -24,7 +24,7 @@ twbs:bootstrap
 
 materialize:materialize
 accounts-base
-accounts-ui
+ian:accounts-ui-bootstrap-3
 accounts-password
 
 
