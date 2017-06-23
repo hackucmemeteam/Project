@@ -59,3 +59,15 @@ Template.games.events({
 	}
 
 })
+
+Template.games.rendered = function() {
+  $('html, body').css({
+    "background-image": "url('http://i.imgur.com/1ya6DPX.png')",
+  })
+};
+
+Template.games.destroyed = function() {
+  $('html, body').css({
+    "background-image": "none"
+  })
+};
